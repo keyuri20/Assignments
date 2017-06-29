@@ -1,0 +1,83 @@
+1. 
+
+CREATE TABLE student (
+    sid int AUTO_INCREMENT,
+    name varchar(255),
+    stream varchar(255),
+    roll_no int NOT NULL, 
+);
+
+
+ALTER TABLE student AUTO_INCREMENT=100;
+
+2. 
+
+INSERT INTO student
+(sid, name, stream, roll_no)
+VALUES
+(101, 'Andy', 'Computer Science', 1),
+(102, 'Sid', 'Electronics', 2),
+(103, 'Katie', 'Electrical', 3),
+(104, 'Larry', 'Biology', 4),
+(105, 'Fred', 'Arts & films', 5);
+
+
+3.
+
+
+Select * FROM student;
+
+
+4.
+
+Select name,stream FROM student;
+
+5.
+
+Select * FROM student WHERE stream = 'Computer Science';
+
+6.
+
+Select name,roll_no FROM student WHERE stream = 'Electronics' AND stream = 'Computer Science';
+
+
+7.
+
+ALTER TABLE student ADD dob date;
+
+
+8.
+
+UPDATE student SET name='john';
+
+9.
+
+CREATE TABLE account (
+    id int AUTO_INCREMENT,
+    fees_due money,
+    total_fees money,
+    status boolean NOT NULL, 
+    sid int,
+    PRIMARY KEY (id),
+    FOREIGN KEY (sid) REFERENCES student(sid)
+);
+
+
+10.
+
+SELECT student.name, student.id, student.roll_no FROM student INNER JOIN account WHERE account.fees_due > 2000 OR account.status = FALSE ON student.sid = account.sid;
+
+
+11.
+
+
+Left Join
+
+SELECT student.name, account.id FROM student LEFT JOIN account ON student.sid = account.sid ORDER BY student.name;
+
+
+Right Join
+
+SELECT account.id, student.name FROM account RIGHT JOIN student ON account.sid = student.sid ORDER BY account.id; 
+
+ 
